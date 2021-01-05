@@ -51,3 +51,26 @@ msg = {
     title: ''
   }
 }
+
+// [Private: 3028939571(friend)] hi
+msg = {
+  self_id: 843476168,
+  time: 1609811225,
+  post_type: 'message',
+  message_type: 'private',
+  sub_type: 'friend',
+  message_id: 'tInzMwAACwCJos6bX/PFGQ==',
+  user_id: 3028939571,
+  message: [{ type: 'text', data: [Object] }],
+  raw_message: 'hi',
+  font: '微软雅黑',
+  sender: {
+    user_id: 3028939571,
+    nickname: 'runzx',
+    sex: 'unknown',
+    age: 0,
+    area: 'unknown',
+    remark: 'zhaixiang'
+  },
+  auto_reply: false
+}
