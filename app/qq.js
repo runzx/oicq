@@ -50,40 +50,28 @@ bot.on('system.online', () => {
 
 //监听私聊
 bot.on('message.private', data => {
-  console.log(data)
+  // console.log(data)
   MessageService.userMsg(data)
   // bot.sendPrivateMsg(data.user_id, "hello");
-  // let { time, message_type: messageType,
-  //   sender, user_id: qq, sub_type: subType,
-  //   raw_message: rawMessage,
-  //   message,
-  //   message_id: messageId,
-  //   self_id: receiveId
-  // } = data
+  let { sender, user_id: qq,
+    raw_message: rawMessage, message, } = data
   // time = time * 1000
-  // const { sex, card: groupNickName, area: city, ...info } = sender
-  // User.updateInfo({ ...info, _id: qq, sex, groupNickName, city, qq, subType, messages: [{ time, rawMessage, messageId, receiveId }] })
-  // Message.create({ _id: messageId, time, messageType, rawMessage, message, qq, receiveId })
+  const { nickname, card: groupNickName, area: city, } = sender
+  console.log(nickname, rawMessage)
 })
 
 //监听群聊
 bot.on('message.group', data => {
-  console.log(data)
+  // console.log(data)
   MessageService.groupMsg(data)
   // bot.sendGroupMsg(data.group_id, "hello");
-  // let { group_id: groupId, group_name: groupName, sender, user_id: qq,
-  //   sub_type: subType,
-  //   raw_message: rawMessage,
-  //   message, time, message_type: messageType,
-  //   message_id: messageId,
-  //   self_id: receiveId } = data
+  let { sender, user_id: qq, group_name: groupName,
+    raw_message: rawMessage, message, } = data
   // time = time * 1000
-  // Message.create({ groupId, _id: messageId, time, messageType, rawMessage, message, qq, receiveId })
-  // Group.updateInfo({ groupId, groupName, qq, receiveId, messages: [{ time, rawMessage, messageId, qq }] })
-  // const { sex, card: groupNickName, area: city, ...info } = sender
-  // User.updateInfo({ ...info, _id: qq, sex, groupId, groupNickName, city, qq, subType, messages: [{ time, rawMessage, messageId, groupId }] })
+  const { nickname, card: groupNickName, area: city, } = sender
+  console.log(groupName, nickname, groupNickName)
+  console.log(rawMessage)
 })
-
 //监听群员入群事件
 // bot.on("notice.group.increase", (data)=>{
 //     bot.sendGroupMsg(data.group_id, data.nickname + " 加入了群");

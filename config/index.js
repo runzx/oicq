@@ -1,6 +1,6 @@
 module.exports = {
   uin: 843476168,
-  password: 'zx2962Zy',
+  password: 'zx2962MmZy',
   DataBaseUrl: 'mongodb://localhost:27017/oicq',
   device: {
     // "--begin--": "修改后可能需要重新验证设备。",
