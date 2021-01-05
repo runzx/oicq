@@ -53,7 +53,7 @@ function genDevice(filepath) {
     "--end--":      "下面的请勿随意修改，除非你知道你在做什么。",
     "android_id":   "BRAND.${rand(6)}.${rand(3)}",
     "boot_id":      "${uuid()}",
-    "proc_version": "Linux version 4.19.71-${rand(5)} (oicq@takayama.github.com)",
+    "proc_version": "Linux version 4.19.71-${rand(5)} (builder@c3-miui-ota-bd25.bj)",
     "mac_address":  "${getMac()}",
     "ip_address":   "10.0.${rand(2)}.${rand(2)}",
     "imei":         "${genIMEI()}",
