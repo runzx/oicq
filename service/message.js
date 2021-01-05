@@ -14,12 +14,12 @@ class MessageService {
 
   static groupMsg(data) {
     const { groupId, messages, messageId, qq, ...info } = this.preData(data)
-    Message.create({ _id: messageId, qq, ...info })
+    Message.create({ _id: messageId, qq, ...info, groupId })
     messages.qq = qq
     Group.updateInfo({ groupId, qq, messages, ...info })
     delete messages.qq
     messages.groupId = groupId
-    User.updateInfo({ ...info, _id: qq, messages })
+    User.updateInfo({ ...info, _id: qq, messages, groupId })
   }
   static preData(data) {
     let {
@@ -36,12 +36,14 @@ class MessageService {
       self_id: receiveId
     } = data
     time = time * 1000
+    qq += ''
     const { sex, card: groupNickName, area: city, ...info } = sender
     const messages = [{ time, rawMessage, messageId, }]
     return {
-      sex, groupName, groupNickName, city, info, time,
+      ...info, sex, groupName, groupNickName, city, time,
       message, groupId, qq, subType, rawMessage, messageType, messageId,
-      receiveId, messages, friend: [receiveId]
+      receiveId, messages, friend: [receiveId],
+      groupNickName
     }
   }
 }

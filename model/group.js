@@ -11,6 +11,7 @@ const CollectionsSchema = new Schema({
   groupName: String,  // 
   // qq: String,  // 发送者qq
   qqIds: [{ type: String, ref: 'User' }],
+  qqList: [], // {qq,nickName}
   messages: [{
     messageId: { type: String, ref: 'message' },
     rawMessage: String,
@@ -22,9 +23,9 @@ const CollectionsSchema = new Schema({
 
 CollectionsSchema.statics = {
   updateInfo(data) {
-    const { groupId, qq, receiveId, messages } = data
+    const { groupId, qq, receiveId, messages, nickname: nickName } = data
     const [message] = messages
-    this.findByIdAndUpdate(groupId, { $push: { messages: message }, $addToSet: { qqIds: qq } }, (err, res) => {
+    this.findByIdAndUpdate(groupId, { $push: { messages: message }, $addToSet: { qqIds: qq, qqList: { qq, nickName } } }, (err, res) => {
       if (res) return
       data.qqIds = [receiveId, qq]
       data._id = groupId

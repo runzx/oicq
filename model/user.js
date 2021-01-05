@@ -25,7 +25,8 @@ const userSchema = new Schema(
 
     status: { type: Number, default: 1, alias: 'online' },
 
-    groups: [{ type: String, ref: 'Group' }], // 
+    groupIds: [{ type: String, ref: 'Group' }], // 
+    groups: [], // 
 
     email: String,
 
@@ -65,12 +66,13 @@ userSchema.pre('save', function (next) {
 
 userSchema.statics = {
   updateInfo(data) {
-    const { _id, messages, groupId, sex, friend } = data
+    const { _id, nickname, messages, groupId, sex, friend, groupNickName, groupName } = data
     const [message] = messages
     const [id] = friend
-    this.findByIdAndUpdate(_id, { $push: { messages: message }, $addToSet: groupId ? { groups: groupId, friend: id } : { friend: id } }, (err, res) => {
+    this.findByIdAndUpdate(_id, { nickName: nickname, $push: { messages: message }, $addToSet: groupId ? { groupIds: groupId, groups: { groupId, groupNickName, groupName }, friend: id } : { friend: id } }, (err, res) => {
       if (res) return
       data.gender = sex === 'male' ? 1 : sex === 'female' ? 2 : 0
+      data.nickName = nickname
       this.create(data)
     })
   },
