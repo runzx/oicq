@@ -1,9 +1,11 @@
 "use strict";
-try {
-    var {createClient} = require("../client");
-} catch {
-    var {createClient} = require("oicq");
-}
+const {createClient} = require("../client");
+
+// try {
+//     var {createClient} = require("../client");
+// } catch {
+//     var {createClient} = require("oicq");
+// }
 
 // your account
 const uin = 843476168
